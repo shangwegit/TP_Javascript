@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de monnaie</title>
+    <!-- Incluez Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Convertisseur de monnaie</h1>
+        <form id="currencyConverter">
+            <div class="form-group">
+                <label for="usd">Montant en dollars :</label>
+                <input type="number" id="usd" class="form-control" placeholder="Entrez le montant en dollars">
+            </div>
+            <div class="form-group">
+                <label for="cdf">Montant en francs congolais :</label>
+                <input type="number" id="cdf" class="form-control" placeholder="Montant en francs congolais" readonly>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="convertCurrency()">Convertir</button>
+        </form>
+    </div>
+
+   
+    <script>
+        function convertCurrency() {
+            const usdAmount = parseFloat(document.getElementById("usd").value);
+            const exchangeRate = 2850; // Taux de change actuel (1 USD = 2864,45 CDF)
+            const cdfAmount = (usdAmount * exchangeRate).toFixed(2);
+            document.getElementById("cdf").value = cdfAmount;
+        }
+
+    </script>
+</body>
+</html>
+
+
+
+

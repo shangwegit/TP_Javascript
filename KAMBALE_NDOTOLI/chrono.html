@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon chronomètre</title>
+    <!-- Inclure Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Mon chronomètre</h1>
+        <div id="timer">00:00</div>
+        <button id="startBtn" class="btn btn-primary">Démarrer</button>
+        <button id="stopBtn" class="btn btn-danger">Arrêter</button>
+        <button id="resetBtn" class="btn btn-secondary">Réinitialiser</button>
+    </div>
+
+   <script>
+    const timerElement = document.getElementById('timer');
+const startBtn = document.getElementById('startBtn');
+const stopBtn = document.getElementById('stopBtn');
+const resetBtn = document.getElementById('resetBtn');
+
+let intervalId;
+let minutes = 0;
+let secondes = 0;
+
+// Fonction pour mettre à jour le minuteur
+function updateTimer() {
+    timerElement.innerText = `${minutes.toString().padStart(2, '0')}:${secondes.toString().padStart(2, '0')}`;
+}
+
+// Démarrer le minuteur
+startBtn.addEventListener('click', () => {
+    intervalId = setInterval(() => {
+        if (secondes === 59) {
+            minutes++;
+            secondes = 0;
+        } else {
+            secondes++;
+        }
+        updateTimer();
+    }, 1000);
+});
+
+// Arrêter le minuteur
+stopBtn.addEventListener('click', () => {
+    clearInterval(intervalId);
+});
+
+// Réinitialiser le minuteur
+resetBtn.addEventListener('click', () => {
+    clearInterval(intervalId);
+    minutes = 0;
+    secondes = 0;
+    updateTimer();
+});
+
+// Initialiser le minuteur
+updateTimer();
+
+
+
+
+   </script>
+</body>
+</html>
+
+
