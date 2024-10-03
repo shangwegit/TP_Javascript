@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur d'unités de longueur</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+</head>
+<body>
+    <div class="container bg-light col-5 shadow border rounded-4  mt-5">
+        <div class="  align-items-center ">
+
+            <div class="row text-center">
+                <h1 class="fs-2">Convertisseur d'unités de Longueur</h1>
+            </div>
+            
+            <div class="row d-flex flex-row mb-2 border border-end-0 rounded-2 m-1">
+                <label for="valeur"class="col-2 form-label mt-2 d-flex  align-items-center">Valeur    </label>
+                <input type="number" class="col form-control" min="1" placeholder="Entrer la valeur" id="inputValue" name="inputValue">
+                
+            </div>
+            <div class="row d-flex flex-row mb-2  border border-end-0 rounded-2 m-1">
+                <label for="valeur"class="col-1 form-label  d-flex  align-items-center">De</label>
+                <select name="inputUnit" class="col form-select" id="inputUnit">
+                    
+                    <option value="meter">Mètre</option>
+                    <option value="kilometer">Kilomètre</option>
+                    <option value="centimeter">Centimètre</option>
+                    <option value="millimeter">Millimètre</option>
+                    <option value="mile">Mile</option>
+                    <option value="yard">Yard</option>
+                    <option value="foot">Pied</option>
+                    <option value="inch">Pouce</option>
+                </select>
+            </div>
+            <div class="row d-flex flex-row mb-2  border border-end-0 rounded-2 m-1">
+                <label for="valeur"class="col-1 form-label d-flex  align-items-center">A</label>
+                <select class="form-select col" name="outputUnit" id="outputUnit">
+                    <option value="meter">Mètre</option>
+                    <option value="kilometer">Kilomètre</option>
+                    <option value="centimeter">Centimètre</option>
+                    <option value="millimeter">Millimètre</option>
+                    <option value="mile">Mile</option>
+                    <option value="yard">Yard</option>
+                    <option value="foot">Pied</option>
+                    <option value="inch">Pouce</option>
+                </select>
+            </div>
+             <div class="row d-flex flex-row m-1 mb-2">
+                
+                    <button class="btn btn-warning" name="btn" id="btn" onclick="convert()">Convertir</button>
+            </div> 
+            <div class="row d-flex flex-row mb-2">
+                
+                <p class="col" id="result"></p>
+            </div> 
+
+
+
+        </div>
+
+    </div>
+    <script>
+        const conversionRates = {
+            meter: 1,
+            kilometer: 0.001,
+            centimeter: 100,
+            millimeter: 1000,
+            mile: 0.000621371,
+            yard: 1.09361,
+            foot: 3.28084,
+            inch: 39.3701
+        };
+
+        function convert() {
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            const inputUnit = document.getElementById('inputUnit').value;
+            const outputUnit = document.getElementById('outputUnit').value;
+
+            if (isNaN(inputValue)) {
+                document.getElementById('result').innerText = "Veuillez entrer une valeur valide.";
+                return;
+            }
+
+            const valueInMeters = inputValue / conversionRates[inputUnit];
+            const convertedValue = valueInMeters * conversionRates[outputUnit];
+
+            document.getElementById('result').innerText = `${inputValue} ${inputUnit} = ${convertedValue} ${outputUnit}`;
+        }
+    </script>
+</body>
+</html>
