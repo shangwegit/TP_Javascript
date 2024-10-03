@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur d'Unités de Longueur</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Convertisseur d'Unités de Longueur</h1>
+        <form id="conversionForm" class="mt-4">
+            <div class="form-group">
+                <label for="value">Valeur</label>
+                <input type="number" class="form-control" id="value" placeholder="Entrez la valeur">
+            </div>
+            <div class="form-group">
+                <label for="fromUnit">De</label>
+                <select class="form-control" id="fromUnit">
+                    <option value="meter">Mètre</option>
+                    <option value="kilometer">Kilomètre</option>
+                    <option value="centimeter">Centimètre</option>
+                    <option value="millimeter">Millimètre</option>
+                    <option value="mile">Mile</option>
+                    <option value="yard">Yard</option>
+                    <option value="foot">Pied</option>
+                    <option value="inch">Pouce</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="toUnit">À</label>
+                <select class="form-control" id="toUnit">
+                    <option value="meter">Mètre</option>
+                    <option value="kilometer">Kilomètre</option>
+                    <option value="centimeter">Centimètre</option>
+                    <option value="millimeter">Millimètre</option>
+                    <option value="mile">Mile</option>
+                    <option value="yard">Yard</option>
+                    <option value="foot">Pied</option>
+                    <option value="inch">Pouce</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" onclick="convert()">Convertir</button>
+        </form>
+        <div class="mt-4">
+            <h3>Résultat:</h3>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        function convert() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+
+            const conversionRates = {
+                meter: 1,
+                kilometer: 0.001,
+                centimeter: 100,
+                millimeter: 1000,
+                mile: 0.000621371,
+                yard: 1.09361,
+                foot: 3.28084,
+                inch: 39.3701
+            };
+
+            const result = value * (conversionRates[toUnit] / conversionRates[fromUnit]);
+            document.getElementById('result').innerText = result + ' ' + toUnit;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Pays</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Ajouter un Pays</h2>
+        <div class="form-group">
+            <input type="text" id="countryInput" class="form-control" placeholder="Entrez le nom du pays">
+        </div>
+        <button class="btn btn-primary" onclick="addCountry()">Ajouter</button>
+        <button class="btn btn-danger" onclick="clearList()">Vider la liste</button>
+        <h3 class="mt-4">Liste des Pays</h3>
+        <ul id="countryList" class="list-group">
+            <li class="list-group-item">RDC</li>
+            <li class="list-group-item">Amerique</li>
+            <li class="list-group-item">Cameroun</li>
+        </ul>
+    </div>
+
+    <script>
+        function addCountry() {
+            const countryInput = document.getElementById('countryInput');
+            const countryList = document.getElementById('countryList');
+            const newCountry = countryInput.value.trim();
+
+            if (newCountry) {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.textContent = newCountry;
+                countryList.appendChild(listItem);
+                countryInput.value = '';
+            }
+        }
+
+        function clearList() {
+            const countryList = document.getElementById('countryList');
+            countryList.innerHTML = '';
+        }
+    </script>
+</body>
+</html>

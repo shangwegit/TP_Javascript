@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enregistrement des Étudiants</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Enregistrement des Étudiants</h2>
+        <form id="studentForm">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" class="form-control" id="nom" required>
+            </div>
+            <div class="form-group">
+                <label for="postnom">Postnom</label>
+                <input type="text" class="form-control" id="postnom" required>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone</label>
+                <input type="text" class="form-control" id="telephone" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Postnom</th>
+                    <th>Téléphone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+                <!-- Les étudiants seront ajoutés ici -->
+            </tbody>
+        </table>
+        <button id="clearTable" class="btn btn-danger">Vider le tableau</button>
+    </div>
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+        
+            const nom = document.getElementById('nom').value;
+            const postnom = document.getElementById('postnom').value;
+            const telephone = document.getElementById('telephone').value;
+        
+            const tableBody = document.getElementById('studentTableBody');
+            const rowCount = tableBody.rows.length;
+            const row = tableBody.insertRow(rowCount);
+        
+            row.insertCell(0).innerHTML = rowCount + 1;
+            row.insertCell(1).innerHTML = nom;
+            row.insertCell(2).innerHTML = postnom;
+            row.insertCell(3).innerHTML = telephone;
+            const actionCell = row.insertCell(4);
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-danger';
+            deleteButton.innerHTML = 'Supprimer';
+            deleteButton.onclick = function() {
+                tableBody.deleteRow(row.rowIndex - 1);
+            };
+            actionCell.appendChild(deleteButton);
+        
+            document.getElementById('studentForm').reset();
+        });
+        
+        document.getElementById('clearTable').addEventListener('click', function() {
+            document.getElementById('studentTableBody').innerHTML = '';
+        });
+        
+    </script>
+</body>
+</html>
