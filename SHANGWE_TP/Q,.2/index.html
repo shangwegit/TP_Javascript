@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur des devises</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+</head>
+<body>
+    <div class="container bg-light col-5 shadow border rounded-4  mt-5">
+        <div class="  align-items-center ">
+
+            <div class="row text-center">
+                <h1 class="fs-2">Convertisseur de Devises</h1>
+            </div>
+            
+            <div class="row d-flex flex-row mb-2 border border-end-0 rounded-2 m-1">
+                <label for="montant"class="col-2 form-label mt-2 d-flex  align-items-center">Montant    </label>
+                <input type="number" class="col form-control" min="1" placeholder="Entrer le montant" id="montant" name="montant">
+                
+            </div>
+            <div class="row d-flex flex-row mb-2  border border-end-0 rounded-2 m-1">
+                <label for="montant"class="col-1 form-label  d-flex  align-items-center">De</label>
+                <select name="dev1" class="col form-select" id="dev1">
+                    <option value="USD">USD (Dollar Americain)</option>
+                    <option value="CDF">CDF (Franc Congolais)</option>
+                </select>
+            </div>
+            <div class="row d-flex flex-row mb-2  border border-end-0 rounded-2 m-1">
+                <label for="montant"class="col-1 form-label d-flex  align-items-center">A</label>
+                <select class="form-select col" name="dev2" id="dev2">
+                    <option value="USD">USD (Dollar Americain)</option>
+                    <option value="CDF">CDF (Franc Congolais)</option>
+                </select>
+            </div>
+            <div class="row d-flex flex-row m-1 mb-2">
+                <button class="btn btn-primary mb-3"name="btn" id="btn">Convertir</button>
+            </div>
+            <div class="row d-flex flex-row mb-2">
+                <h3 class="col">Résultat : </h3>
+                <h3 class="col" id="resultat"></h3>
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        let montant = document.getElementById('montant');
+        let dev1 = document.getElementById('dev1');
+        let dev2 = document.getElementById('dev2');
+        let resultat = document.getElementById('resultat');
+        let btn = document.getElementById('btn');
+        let res=0;
+        btn.addEventListener('click',function(){
+            convertir();
+        })
+
+        function convertir(){
+
+            //if ()
+            if(dev1.value == "USD" && dev2.value == "CDF"){
+                res = Number(montant.value) * 2850;
+            }
+            else if(dev1.value =="CDF" && dev2.value == "USD"){
+                res = Number(montant.value) / 2850;
+            }
+            else if(dev1.value =="CDF" && dev2.value =="CDF"){
+                res =Number(montant.value);q
+            }
+            else if(dev1.value =="USD" && dev2.value =="USD"){
+                res =Number(montant.value);
+            }
+            resultat.innerHTML = res;
+
+        }
+    </script>
+</body>
+</html>
+
